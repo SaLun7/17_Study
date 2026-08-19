@@ -1,0 +1,31 @@
+① Accuracy만 믿으면 안 된다.
+
+② 그래서
+   Confusion Matrix
+   Precision
+   Recall
+   F1
+   ROC-AUC
+   를 사용한다.
+
+③ predict()는 최종 답
+   predict_proba()는 확률이다.
+
+④ Threshold를 바꾸면
+   Precision과 Recall이 달라진다.
+
+⑤ 실제 당뇨병 데이터에 적용한다.
+
+⑥ Decision Tree는
+   조건을 계속 나누며 분류한다.
+
+⑦ Tree가 너무 복잡하면
+   Overfitting이 생길 수 있다.
+
+⑧ max_depth,
+   min_samples_split,
+   min_samples_leaf
+   등으로 Tree를 조절한다.
+
+⑨ GridSearchCV가
+   좋은 Hyperparameter를 자동으로 찾아준다.
