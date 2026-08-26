@@ -1,0 +1,7 @@
+pyproject.toml
+src/colab_local_shim.egg-info/PKG-INFO
+src/colab_local_shim.egg-info/SOURCES.txt
+src/colab_local_shim.egg-info/dependency_links.txt
+src/colab_local_shim.egg-info/top_level.txt
+src/google/colab/__init__.py
+src/google/colab/files.py
