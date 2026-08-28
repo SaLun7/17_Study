@@ -1,5 +1,7 @@
-*.csv
-17_머신러닝_260813_1635/DAY4_260814/data/
+# Generated/exported data
+17_job_scraper/downloads.csv
+17_머신러닝/DAY4_260814/data/
+17_aws_docker/backend/frontend_source/data/**/*.csv
 
 # Python/Jupyter
 __pycache__/
