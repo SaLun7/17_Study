@@ -1,3 +1,6 @@
 .pip-cache/
 __pycache__/
 *.pyc
+*.h5
+*.keras
+image_at_epoch_*.png
