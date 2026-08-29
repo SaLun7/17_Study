@@ -1,6 +1,6 @@
 # Matplotlib·Seaborn·Folium
 
-[← 데이터 살펴보기](<../README.md>) · [전체 목차](<../../README.md>)
+[← 상위 목차](<../README.md>) · [전체 목차](<../../README.md>)
 
 정적 그래프부터 통계 그래프와 지도 시각화까지 도구별로 실행한 노트.
 

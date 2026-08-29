@@ -15,7 +15,7 @@
 
 | 폴더 | 내용 |
 |---|---|
-| [17_fastapi](<17_fastapi/readme.md>) | FastAPI 기능별 예제 |
+| [17_fastapi](<17_fastapi/README.md>) | FastAPI 기능별 예제 |
 | [17_todos](<17_todos/README.md>) | 템플릿부터 MVC까지 단계별 Todo 앱 |
 | [17_job_scraper](<17_job_scraper/README.md>) | Flask 기반 채용 정보 검색과 CSV 저장 |
 | [17_aws_docker](<17_aws_docker/README.md>) | Docker Compose, FastAPI와 Nginx 배포 구성 |

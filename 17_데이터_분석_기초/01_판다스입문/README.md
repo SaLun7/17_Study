@@ -1,6 +1,6 @@
 # Pandas 입문
 
-[← 전체 목차](<../README.md>)
+[← 상위 목차](<../README.md>)
 
 Series와 DataFrame을 만들고 인덱스·연산·필터링·문자열 처리를 익힌 내용.
 
