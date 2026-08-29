@@ -1,6 +1,6 @@
-# 03. CIFAR-10 GoogLeNet 구현
+# 08. CIFAR-10 GoogLeNet 구현
 
-[← DAY3 목차](<README.md>) · [원본 노트북](<03_CIFAR-10 GoogLeNet 구현.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<08_CIFAR-10 GoogLeNet 구현.ipynb>)
 
 CIFAR-10에 맞춰 GoogLeNet의 핵심인 Inception 모듈을 함수형 API로 직접 구성했다.
 

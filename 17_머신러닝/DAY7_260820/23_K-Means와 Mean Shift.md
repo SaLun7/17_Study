@@ -2,7 +2,7 @@
 
 중심 기반 K-Means와 밀도 봉우리를 찾는 Mean Shift를 Iris와 합성 데이터에서 비교한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<23_K-Means와 Mean Shift.ipynb>)
+[← DAY7 목차](<README.md>) · [원본 노트북](<23_K-Means와 Mean Shift.ipynb>)
 
 ## 실습 내용
 

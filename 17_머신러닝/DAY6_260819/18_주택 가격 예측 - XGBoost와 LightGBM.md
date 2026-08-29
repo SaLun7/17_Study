@@ -2,7 +2,7 @@
 
 House Prices 데이터의 결측치와 범주형 변수를 처리하고 XGBoost와 LightGBM으로 SalePrice를 예측한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<18_주택 가격 예측 - XGBoost와 LightGBM.ipynb>)
+[← DAY6 목차](<README.md>) · [원본 노트북](<18_주택 가격 예측 - XGBoost와 LightGBM.ipynb>)
 
 ## 실습 내용
 

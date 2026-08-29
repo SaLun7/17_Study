@@ -2,7 +2,7 @@
 
 OpenCV 기본 변환을 확장해 TensorFlow 텐서, 색공간, 정규화, Salt-and-pepper와 Gaussian 노이즈를 다룬다.
 
-[← 과정 목차](<README.md>) · [원본 노트북](<02_TensorFlow 영상 표현과 노이즈 처리.ipynb>)
+[← DAY1 목차](<README.md>) · [원본 노트북](<02_TensorFlow 영상 표현과 노이즈 처리.ipynb>)
 
 ## 실습 내용
 

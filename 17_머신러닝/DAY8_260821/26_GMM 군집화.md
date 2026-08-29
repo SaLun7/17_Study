@@ -2,7 +2,7 @@
 
 Gaussian Mixture Model의 확률적 군집을 K-Means와 비교하고 타원형 분포에서의 차이를 확인한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<26_GMM 군집화.ipynb>)
+[← DAY8 목차](<README.md>) · [원본 노트북](<26_GMM 군집화.ipynb>)
 
 ## 실습 내용
 

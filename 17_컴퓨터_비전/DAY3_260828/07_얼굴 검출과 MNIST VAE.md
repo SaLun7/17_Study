@@ -1,6 +1,6 @@
-# 02. 얼굴 검출과 MNIST VAE
+# 07. 얼굴 검출과 MNIST VAE
 
-[← DAY3 목차](<README.md>) · [원본 노트북](<02_얼굴 검출과 MNIST VAE.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<07_얼굴 검출과 MNIST VAE.ipynb>)
 
 앞부분의 Haar Cascade 얼굴 검출과 뒷부분의 MNIST 변분 오토인코더 실습이 한 노트북에 들어 있다.
 

@@ -2,7 +2,7 @@
 
 XGBoost의 Native API와 scikit-learn Wrapper API를 사용해 유방암 데이터를 분류하고 조기 종료를 적용한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<09_XGBoost.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<09_XGBoost.ipynb>)
 
 ## 실습 내용
 

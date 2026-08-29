@@ -2,7 +2,7 @@
 
 라벨을 이용하는 LDA와 행렬 분해 기반 Truncated SVD를 PCA와 비교한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<21_LDA와 SVD 차원 축소.ipynb>)
+[← DAY7 목차](<README.md>) · [원본 노트북](<21_LDA와 SVD 차원 축소.ipynb>)
 
 ## 실습 내용
 

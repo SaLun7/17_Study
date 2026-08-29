@@ -2,7 +2,7 @@
 
 LightGBM으로 유방암 데이터를 분류하고 조기 종료와 특성 중요도를 확인한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<10_LightGBM.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<10_LightGBM.ipynb>)
 
 ## 실습 내용
 

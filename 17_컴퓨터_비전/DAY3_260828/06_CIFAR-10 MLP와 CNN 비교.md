@@ -1,6 +1,6 @@
-# 01. CIFAR-10 MLP와 CNN 비교
+# 06. CIFAR-10 MLP와 CNN 비교
 
-[← DAY3 목차](<README.md>) · [원본 노트북](<01_CIFAR-10 MLP와 CNN 비교.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<06_CIFAR-10 MLP와 CNN 비교.ipynb>)
 
 같은 CIFAR-10 데이터로 MLP와 CNN을 차례로 학습해 이미지에서 공간 정보를 쓰는 차이를 확인했다.
 

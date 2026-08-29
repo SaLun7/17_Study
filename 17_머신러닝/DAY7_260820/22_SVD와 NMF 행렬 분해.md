@@ -2,7 +2,7 @@
 
 SVD로 행렬을 분해·복원하고 Truncated SVD와 NMF의 저차원 표현을 비교한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<22_SVD와 NMF 행렬 분해.ipynb>)
+[← DAY7 목차](<README.md>) · [원본 노트북](<22_SVD와 NMF 행렬 분해.ipynb>)
 
 ## 실습 내용
 

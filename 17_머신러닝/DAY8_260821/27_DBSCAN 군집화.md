@@ -2,7 +2,7 @@
 
 DBSCAN의 eps와 min_samples를 조정하며 밀도 기반 군집과 노이즈 탐지를 이해한다.
 
-[← 과정 목차](<../README.md>) · [원본 노트북](<27_DBSCAN 군집화.ipynb>)
+[← DAY8 목차](<README.md>) · [원본 노트북](<27_DBSCAN 군집화.ipynb>)
 
 ## 실습 내용
 

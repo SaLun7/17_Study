@@ -1,6 +1,6 @@
-# 05. EfficientNetB0 사전학습 이미지 분류
+# 10. EfficientNetB0 사전학습 이미지 분류
 
-[← DAY3 목차](<README.md>) · [원본 노트북](<05_EfficientNetB0 사전학습 이미지 분류.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<10_EfficientNetB0 사전학습 이미지 분류.ipynb>)
 
 ResNet50과 같은 강아지 사진을 ImageNet 사전학습 EfficientNetB0으로 분류해 결과를 비교했다.
 
@@ -20,4 +20,4 @@ ResNet50과 같은 강아지 사진을 ImageNet 사전학습 EfficientNetB0으�
 
 모델의 전체 파라미터는 약 533만 개다. EfficientNet은 네트워크의 깊이, 너비, 입력 해상도를 한쪽만 크게 하지 않고 함께 조절하는 방식으로 성능과 계산량을 맞춘다.
 
-ResNet50과 1순위 품종은 달랐지만 두 모델 모두 푸들 계열을 상위 결과로 냈다. 현재 폴더에는 실행에 사용한 `dog.png`가 없다.
+ResNet50과 1순위 품종은 달랐지만 두 모델 모두 푸들 계열을 상위 결과로 냈다. 실행에 사용한 `dog.png`는 현재 폴더에 함께 들어 있다.

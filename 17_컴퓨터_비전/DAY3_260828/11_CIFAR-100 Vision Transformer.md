@@ -1,6 +1,6 @@
-# 06. CIFAR-100 Vision Transformer
+# 11. CIFAR-100 Vision Transformer
 
-[← DAY3 목차](<README.md>) · [원본 노트북](<06_CIFAR-100 Vision Transformer.ipynb>)
+[← DAY3 목차](<README.md>) · [원본 노트북](<11_CIFAR-100 Vision Transformer.ipynb>)
 
 CIFAR-100 이미지를 작은 패치로 나누고 Transformer에 넣는 Vision Transformer 구조를 직접 구현했다.
 
