@@ -1,0 +1,6 @@
+[submodule "17_컴퓨터_비전/models"]
+	path = 17_컴퓨터_비전/models
+	url = https://github.com/tensorflow/models
+[submodule "17_컴퓨터_비전/darknet"]
+	path = 17_컴퓨터_비전/darknet
+	url = https://github.com/pjreddie/darknet

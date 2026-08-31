@@ -1,4 +1,12 @@
 .pip-cache/
+.venv/
+.python-runtimes/
+data/
+VOCtrainval_2007/
+VOCtest_2007/
+three young man.jpg
+like_lenna.png
+DAY4_260831/models/
 __pycache__/
 *.pyc
 *.h5
