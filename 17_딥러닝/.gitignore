@@ -1,0 +1,29 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python caches and tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Editor settings
+.vscode/
+.idea/
+
+# Downloaded datasets and generated model artifacts
+data/
+*.pth
+*.pt
+*.ckpt
+*.onnx
+
+# OS files
+.DS_Store
+Thumbs.db
