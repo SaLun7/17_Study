@@ -24,6 +24,12 @@ data/
 *.ckpt
 *.onnx
 
+# DAY3 local datasets, directory link, and legacy checkpoint
+/DAY3_260903/helmet/
+/DAY3_260903/chest_xray/
+/DAY3_260903/images/
+/DAY3_260903/best_transfer_model
+
 # OS files
 .DS_Store
 Thumbs.db
