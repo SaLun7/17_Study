@@ -95,6 +95,10 @@ visualize_cluster_plot(dbscan, df, 'dbscan_cluster', iscenter=False)
 
 </details>
 
+## 실습 흐름
+
+Iris 데이터에서 `eps`와 `min_samples`를 바꾸며 군집 수와 노이즈 비율을 확인했다. 원형으로 겹쳐 있는 합성 데이터에서는 K-Means, GMM과 DBSCAN 결과를 나란히 그려 중심이나 타원으로 표현하기 어려운 모양을 비교했다. 어느 군집에도 충분히 연결되지 않은 점은 `-1` 노이즈로 분리했다.
+
 ## 결과 메모
 
 동심원처럼 중심 기반 방법이 나누기 어려운 구조를 DBSCAN은 밀도 연결로 구분할 수 있다. 밀도가 크게 다른 군집에는 하나의 eps가 잘 맞지 않을 수 있다.
@@ -108,6 +112,12 @@ visualize_cluster_plot(dbscan, df, 'dbscan_cluster', iscenter=False)
 | `KMeans` | 중심 거리 기반 군집화 |
 | `GaussianMixture` | 가우시안 혼합 확률 군집화 |
 | `DBSCAN` | 밀도 연결 기반 군집화와 노이즈 탐지 |
+
+## 다시 볼 것
+
+- 거리 기반 이웃을 사용하므로 실행 전에 피처 스케일을 맞춘다.
+- `eps`는 k-distance 그래프와 데이터 간격을 참고해 조정한다.
+- 밀도가 크게 다른 군집이 함께 있으면 하나의 설정으로 나누기 어렵다.
 
 ## 정리
 

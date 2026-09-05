@@ -101,6 +101,10 @@ pred_probs = xgb_wrapper.predict_proba(X_test)[:, 1]
 
 </details>
 
+## 실습 흐름
+
+XGBoost 전용 데이터 형식과 scikit-learn 방식의 분류기를 각각 사용해 같은 부스팅 흐름을 확인했다. 반복마다 손실이 줄어드는 과정을 기록하고 검증 성능이 좋아지지 않으면 일찍 멈추도록 설정했다. 예측 클래스와 확률을 이용해 혼동행렬, F1과 ROC-AUC를 비교했다.
+
 ## 결과 메모
 
 train logloss와 validation logloss의 차이가 커지기 시작하면 과적합 가능성이 있다. 최종 성능은 조기 종료에 쓰지 않은 테스트 세트에서 확인한다.
@@ -128,6 +132,12 @@ train logloss와 validation logloss의 차이가 커지기 시작하면 과적�
 | `recall_score` | 재현율 계산 |
 | `f1_score` | 정밀도와 재현율의 조화평균 계산 |
 | `roc_auc_score` | 확률 순위 기반 ROC-AUC 계산 |
+
+## 다시 볼 것
+
+- `n_estimators`가 커도 조기 종료가 있으면 필요한 반복에서 멈출 수 있다.
+- 학습률을 낮출 때는 보통 더 많은 트리가 필요하다.
+- 조기 종료에 사용하는 검증 세트를 최종 테스트 세트와 분리한다.
 
 ## 정리
 

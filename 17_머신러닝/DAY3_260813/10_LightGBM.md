@@ -112,6 +112,10 @@ plot_importance(lgbm_wrapper, ax=ax)
 
 </details>
 
+## 실습 흐름
+
+LightGBM 분류기를 학습하고 트리 수, 잎 개수와 최소 leaf 데이터 수에 따른 변화를 살펴봤다. 검증 세트를 지정해 조기 종료 시점을 찾고 예측 확률로 ROC-AUC를 계산했다. XGBoost 결과와 성능, 학습 속도와 과적합 경향을 함께 비교했다.
+
 ## 결과 메모
 
 빠른 학습만으로 모델을 선택하지 말고 검증 손실과 클래스별 지표를 확인한다. 경고가 반복되면 데이터 크기와 규제 파라미터를 함께 점검한다.
@@ -141,6 +145,12 @@ Early stopping, best iteration is:
 | `recall_score` | 재현율 계산 |
 | `f1_score` | 정밀도와 재현율의 조화평균 계산 |
 | `roc_auc_score` | 확률 순위 기반 ROC-AUC 계산 |
+
+## 다시 볼 것
+
+- leaf-wise 성장은 빠르지만 작은 데이터에서는 과적합이 쉬울 수 있다.
+- `num_leaves`와 `min_child_samples`를 따로 보지 말고 함께 조정한다.
+- 범주형 피처를 어떤 방식으로 전달했는지 실험 기록에 남긴다.
 
 ## 정리
 

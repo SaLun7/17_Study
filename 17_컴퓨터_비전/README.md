@@ -40,5 +40,5 @@ git submodule update --init --recursive
 ## 문서 활용법
 
 - `.ipynb`: 실행 가능한 원본 실습
-- 동명 `.md`: 설명 중심 학습노트
+- 동명 `.md`: 핵심 개념, 실습 흐름, 실행 결과와 복습 포인트를 정리한 학습노트
 - DAY별 `README.md`: 해당 날짜의 목차와 학습 순서

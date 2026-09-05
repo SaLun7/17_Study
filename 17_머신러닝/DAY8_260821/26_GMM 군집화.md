@@ -89,6 +89,10 @@ visualize_cluster_plot(gmm, df, 'gmm_label',iscenter=False)
 
 </details>
 
+## 실습 흐름
+
+Iris 데이터에 GMM과 K-Means를 각각 적용해 군집 라벨과 실제 품종의 교차표를 비교했다. 이어서 원형 합성 데이터를 선형 변환해 타원형으로 만든 뒤 두 모델의 경계를 시각화했다. GMM이 평균뿐 아니라 공분산까지 추정해 기울어진 군집을 표현하는 모습을 확인했다.
+
 ## 결과 메모
 
 타원형으로 늘어난 데이터에서는 중심 거리만 쓰는 K-Means보다 GMM이 형태를 유연하게 표현할 수 있다. 구성요소 수는 별도로 선택해야 한다.
@@ -100,6 +104,12 @@ visualize_cluster_plot(gmm, df, 'gmm_label',iscenter=False)
 | `load_iris` | Iris 데이터셋 불러오기 |
 | `KMeans` | 중심 거리 기반 군집화 |
 | `GaussianMixture` | 가우시안 혼합 확률 군집화 |
+
+## 다시 볼 것
+
+- `predict_proba`로 경계 부근 샘플의 소속 불확실성을 확인한다.
+- covariance 유형에 따라 표현력과 파라미터 수가 달라진다.
+- 구성요소 수는 BIC, AIC와 반복 실행 안정성을 함께 보고 정한다.
 
 ## 정리
 
