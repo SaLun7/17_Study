@@ -22,6 +22,12 @@ jupyter lab
 
 노트북에서는 커널 **Python (컴퓨터 비전)** 을 선택한다. 환경을 새로 만들려면 `.\setup_venv.ps1 -Recreate`를 사용한다. `dlib`, PyTorch, SAM 등 선택 실습용 대형 패키지까지 모두 설치하려면 `.\setup_venv.ps1 -Full`을 사용한다.
 
+DAY4의 TensorFlow Object Detection API 실습 전에는 저장소 루트에서 서브모듈도 내려받는다.
+
+```powershell
+git submodule update --init --recursive
+```
+
 ## 과정 목차
 
 | DAY | 주요 주제 | 학습노트 |
@@ -29,6 +35,7 @@ jupyter lab
 | DAY1 | OpenCV 기본 변환, TensorFlow 영상 표현과 노이즈 처리 | [DAY1 열기](<DAY1_260826/README.md>) |
 | DAY2 | 주파수 변환과 에지 검출, 신경망, GAN, CIFAR-10 분류 | [DAY2 열기](<DAY2_260827/README.md>) |
 | DAY3 | CNN 비교, VAE, GoogLeNet, 사전학습 모델, Vision Transformer | [DAY3 열기](<DAY3_260828/README.md>) |
+| DAY4 | Swin Transformer, Faster R-CNN과 YOLO 객체 검출 | [DAY4 열기](<DAY4_260831/README.md>) |
 
 ## 문서 활용법
 
