@@ -30,6 +30,9 @@ data/
 /DAY3_260903/images/
 /DAY3_260903/best_transfer_model
 
+# DAY4 local dataset
+/DAY4_260904/cityscapes/
+
 # OS files
 .DS_Store
 Thumbs.db
