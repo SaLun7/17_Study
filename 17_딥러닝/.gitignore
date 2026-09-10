@@ -36,3 +36,6 @@ data/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Personal practice notebook
+/pp.ipynb
