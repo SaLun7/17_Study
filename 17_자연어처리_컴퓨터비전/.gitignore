@@ -1,0 +1,15 @@
+.venv/
+.vscode/
+.jdk/
+__pycache__/
+.ipynb_checkpoints/
+.cache/
+*.py[cod]
+.env
+data/
+runs/
+wandb/
+*.pt
+*.pth
+*.onnx
+pp.ipynb

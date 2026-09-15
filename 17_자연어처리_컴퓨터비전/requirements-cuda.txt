@@ -1,0 +1,5 @@
+# RTX 50 시리즈(Blackwell, sm_120)를 지원하는 공식 CUDA 12.8 PyTorch 빌드
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.9.1+cu128
+torchvision==0.24.1+cu128
+torchaudio==2.9.1+cu128
