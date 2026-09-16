@@ -30,6 +30,8 @@ if (-not (Test-Path -LiteralPath $VenvPython)) {
 & $VenvPython -m pip install --upgrade pip setuptools wheel
 & $VenvPython -m pip install -r (Join-Path $ProjectRoot "requirements-cuda.txt")
 & $VenvPython -m pip install -r (Join-Path $ProjectRoot "requirements-windows.txt")
+$SitePackages = & $VenvPython -c "import site; print(site.getsitepackages()[0])"
+Set-Content -LiteralPath (Join-Path $SitePackages "nlp_cv_project.pth") -Value $ProjectRoot -Encoding UTF8
 $KernelArguments = @(
     "--user",
     "--name", "nlp-cv-gpu-ascii",
