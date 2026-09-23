@@ -1,0 +1,4 @@
+# Windows / Python 3.12 / NVIDIA RTX 50 series
+--extra-index-url https://download.pytorch.org/whl/cu128
+torch==2.11.0+cu128
+-r requirements-notebook.txt
