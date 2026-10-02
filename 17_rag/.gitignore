@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.env
+__MACOSX/
+.DS_Store
+._*
+DAY*/assets/
+DAY*/data/
+
+# Generated models and vector database files
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+work/models/
+work/chroma/
+DAY*/work/models/
+DAY*/work/chroma/
