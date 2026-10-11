@@ -1,46 +1,38 @@
-# 자연어 처리 · 컴퓨터 비전 실습 환경
+# 자연어 처리·컴퓨터 비전 학습 저장소
 
-## 폴더 규칙
+[← 저장소 목차](<../README.md>)
 
-수업일별로 `DAY1_YYMMDD`, `DAY2_YYMMDD`, `DAY3_YYMMDD` 형식의 폴더를 추가하고,
-각 폴더 안에 `01.ipynb`, `02.ipynb`처럼 노트북을 둡니다.
+현재 자료는 PyTorch 기초와 자연어 처리 실습이 중심이다. 토큰화·임베딩에서 문장 분류, Transformer 번역과 사전학습 모델 활용으로 이어진다.
 
-## 환경 설치
+## 과정 목차
 
-Python 3.12를 설치한 다음 PowerShell에서 프로젝트 폴더로 이동해 아래 명령을 한 번 실행합니다.
+| DAY | 주요 주제 | 학습노트 |
+|---|---|---|
+| DAY1 | PyTorch 회귀·이진 분류와 모델 저장 | [DAY1 열기](<DAY1_260914/README.md>) |
+| DAY2 | 텍스트 증강, 한국어 토큰화와 Skip-gram | [DAY2 열기](<DAY2_260915/README.md>) |
+| DAY3 | Word2Vec·FastText, LSTM·TextCNN과 번역 준비 | [DAY3 열기](<DAY3_260916/README.md>) |
+| DAY4 | Transformer 번역, BERT·KoELECTRA 분류와 BART·T5 요약 | [DAY4 열기](<DAY4_260917/README.md>) |
+
+## 실행 환경
+
+과정 폴더에서 Python 3.12로 다음 스크립트를 실행한다.
 
 ```powershell
-Set-ExecutionPolicy -Scope Process Bypass
 .\setup_env.ps1
 ```
 
-설치 후 VS Code/Jupyter에서 커널 **Python (NLP-CV GPU ASCII)** 를 선택합니다.
-KoNLPy의 Windows 한글 경로 문제를 피하기 위해 가상환경은 기본적으로
-`$env:USERPROFILE\.venvs\nlp-cv`에 생성됩니다. 다른 위치를 쓰려면 실행 전에
-`NLP_CV_VENV` 환경변수로 영문 경로를 지정합니다.
-Hugging Face와 PyTorch가 내려받는 모델은 프로젝트의 `.cache` 아래에 저장됩니다.
+VS Code에서는 `Python (NLP-CV GPU ASCII)` 커널을 선택한다. 기본 가상환경은 한글 경로 문제를 피하기 위해 `$env:USERPROFILE\.venvs\nlp-cv`에 만든다. 다른 영문 경로를 사용하려면 `NLP_CV_VENV`를 지정한다. KoNLPy용 JDK는 영문 경로에 준비하고 `JAVA_HOME`을 맞춘다. 상세 설치 동작은 [setup_env.ps1](<setup_env.ps1>)과 패키지 목록을 참고한다.
 
-## 다시 확인하기
+각 노트북의 첫 셀에서 과정 루트를 찾아 작업 위치와 모듈 경로를 맞춘다. 따라서 공용 `data/`와 `models/`를 DAY마다 복사할 필요가 없다. 번역 실습의 `torchtext` 폴더와 `torchtext_compat.py`는 수업 환경 호환용 코드다.
 
-```powershell
-& "$env:USERPROFILE\.venvs\nlp-cv\Scripts\python.exe" .\verify_gpu.py
-```
+## 데이터와 모델
 
-`CUDA available: True`와 GPU 이름이 출력되면 준비가 끝난 것입니다.
+`data/non_linear.csv`, `data/binary.csv`는 별도로 준비한다. NSMC·KorNLI·청원 말뭉치·Multi30k·뉴스 데이터와 사전학습 모델은 실행 중 내려받는다. `models/`의 BPE·WordPiece·Word2Vec 파일은 포함돼 있지만 BERT·BART·KoELECTRA 분류·요약 체크포인트는 없다. DAY4 평가 셀을 실행하려면 학습 결과를 먼저 준비해야 한다.
 
-> PyTorch 공식 CUDA 패키지는 실행에 필요한 CUDA 런타임을 포함하므로 일반적인
-> 노트북 학습에는 별도의 CUDA Toolkit(`nvcc`) 설치가 필요하지 않습니다.
+## 문서 활용법
 
-## KoNLPy / Java
+- `.ipynb`: 실행용 노트북
+- 동명 `.md`: 개념, 실습 흐름, 저장된 결과와 다시 볼 내용을 정리한 학습노트
+- DAY별 `README.md`: 실습 순서와 필요한 파일 안내
 
-KoNLPy 형태소 분석기에는 JDK 17이 필요합니다. 한글 경로로 인한 JVM 로딩 문제를
-피하려면 JDK를 `C:\Java\jdk-17`처럼 영문으로만 된 경로에 설치하고, 환경 설치 전에
-`JAVA_HOME`과 `PATH`를 설정합니다.
-
-```powershell
-$env:JAVA_HOME = "C:\Java\jdk-17"
-$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
-.\setup_env.ps1
-```
-
-현재 PC의 실제 JDK 설치 경로에 맞게 `JAVA_HOME` 값만 변경하면 됩니다.
+학습노트의 수치는 노트북에 저장된 이전 실행 기록을 기준으로 적었다. 정리 과정에서 장시간 학습이나 외부 API 평가는 다시 실행하지 않았다.

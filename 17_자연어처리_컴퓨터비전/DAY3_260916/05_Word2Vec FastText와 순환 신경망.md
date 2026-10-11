@@ -1,0 +1,27 @@
+# 05. Word2Vec FastText와 순환 신경망
+
+[← DAY3 목차](<README.md>) · [원본 노트북](<05_Word2Vec FastText와 순환 신경망.ipynb>)
+
+Skip-gram 직접 구현에 gensim Word2Vec·FastText를 더하고, 단어 벡터에서 문장 분류기로 넘어가는 구조를 살펴봤다.
+
+## 핵심 개념
+
+Word2Vec은 단어를 하나의 어휘 항목으로 다루지만 FastText는 단어 내부의 문자 조각도 활용한다. 그래서 학습 어휘에 없는 형태라도 조각 정보로 벡터를 만들 수 있다. 학습에 없던 단어를 표현할 수 있다는 것과 의미가 항상 정확하다는 것은 별개다.
+
+RNN·LSTM은 단어 벡터의 순서를 따라 문장 표현을 만든다. 양방향 설정과 LSTM projection 설정에 따라 출력, hidden state, cell state의 마지막 차원이 달라진다.
+
+## 실습 흐름
+
+NSMC로 Skip-gram과 Word2Vec을 학습해 유사 단어를 비교하고 Word2Vec 모델을 저장한다. KorNLI 문장으로 FastText의 미등록 단어 처리를 확인한 뒤, RNN·LSTM shape과 문장 분류기의 전처리·학습 함수를 구성한다.
+
+## 실행 결과
+
+직접 구현한 Skip-gram의 저장 손실은 10회 학습 동안 약 6.197에서 5.813으로 감소했다. gensim 결과에서는 “연기”와 “연기력”의 유사도가 약 0.781로 출력됐다. 뒤쪽 문장 분류부는 함수와 구조를 준비한 내용이므로 이 수치를 문장 분류 정확도로 읽으면 안 된다.
+
+## 필요한 파일
+
+NSMC와 KorNLI는 Korpora로 받는다. `models/word2vec.model`은 저장소에 있으며 다음 두 문장 분류 노트북에서도 읽는다.
+
+## 다시 볼 것
+
+어휘 사전의 ID 순서와 임베딩 행의 순서가 맞아야 한다. FastText의 OOV 처리와 분류 모델의 `<unk>` 처리도 구분해서 본다.

@@ -8,3 +8,7 @@ wandb/
 *.pt
 *.bin
 tiny_stories_*.txt
+
+# WebBot corpora and generated tokenizer
+owt_*.txt
+/DAY4_260930/webbot/merge_rules.pkl

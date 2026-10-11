@@ -1,88 +1,45 @@
-# CodeBot / StoryBot 학습 환경
+# CodeBot·StoryBot 학습 저장소
 
-프로젝트 루트의 `.venv` 하나를 모든 DAY 폴더에서 공유합니다.
+[← 저장소 목차](<../README.md>)
 
-## 설치 환경
+BPE와 attention을 직접 구현하고 작은 언어 모델의 사전학습, SFT, GRPO·DPO를 실습했다. DAY3에는 StoryBot 웹서비스가 있고 DAY4에는 WebBot 확장 예제도 포함돼 있다.
 
-- Python 3.12.14
-- PyTorch 2.11.0 + CUDA 12.8 (`cu128`)
-- NumPy 1.26.4 (`requirements.txt`의 `<2.0.0` 조건)
-- 기존 requirements 전체 및 JupyterLab / ipykernel
+## 과정 목차
 
-## 노트북 사용
+| DAY | 주요 주제 | 학습노트 |
+|---|---|---|
+| DAY1 | 문자·바이트·BPE와 Multi-Head Attention | [DAY1 열기](<DAY1_260923/README.md>) |
+| DAY2 | CodeBot 토크나이저, 사전학습과 SFT | [DAY2 열기](<DAY2_260928/README.md>) |
+| DAY3 | CodeBot GRPO, StoryBot 사전학습과 웹서비스 | [DAY3 열기](<DAY3_260929/README.md>) |
+| DAY4 | StoryBot DPO·생성 평가와 WebBot 분산 학습 | [DAY4 열기](<DAY4_260930/README.md>) |
 
-VS Code에서 **이 프로젝트 폴더 전체**를 열고 노트북 오른쪽 위의 커널 선택에서
-**Python (CodeBot StoryBot CUDA)** 또는 **.venv (Python 3.12)** 를 선택하세요.
-목록에 없다면 Python 환경 선택에서 `.venv\Scripts\python.exe`를 지정하세요.
-VS Code에는 Python 및 Jupyter 확장이 필요합니다.
+## 실행 환경
 
-JupyterLab은 프로젝트 루트에서 다음 명령으로 시작할 수 있습니다.
-
-```powershell
-.\.venv\Scripts\jupyter-lab.exe
-```
-
-현재 DAY1 노트북은 `DAY1_260923/01.ipynb`입니다.
-새 날짜의 폴더와 GPU 확인 셀이 있는 노트북은 다음과 같이 만드세요.
-
-```powershell
-.\.venv\Scripts\python.exe new_day.py 2
-.\.venv\Scripts\python.exe new_day.py 3
-```
-
-각각 `DAY2/01.ipynb`, `DAY3/01.ipynb`를 생성합니다.
-이미 내용이 있는 노트북은 덮어쓰지 않습니다.
-폴더 이름을 직접 정해서 만들고 같은 커널을 선택해도 됩니다.
-
-## 가상환경 활성화 (선택)
-
-프로젝트 루트의 PowerShell에서:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-활성화 없이 위처럼 `.venv` 안의 실행 파일을 직접 사용해도 됩니다.
-
-## GPU 확인
-
-```powershell
-.\.venv\Scripts\python.exe verify_cuda.py
-.\.venv\Scripts\python.exe -m pip check
-```
-
-GPU 행렬 곱셈과 역전파, NumPy 연동, 필수 패키지 import를 확인합니다.
-학습 코드에서는 모델과 데이터를 모두 GPU로 이동해야 합니다.
-
-```python
-import torch
-device = torch.device('cuda')
-model = model.to(device)
-inputs = inputs.to(device)
-```
-
-## 재설치
-
-Python 3.12를 준비한 뒤 다음 스크립트를 실행하세요.
-Python이 PATH에 없다면 `-Python`에 python.exe의 전체 경로를 전달하세요.
+과정 폴더에서 [setup_venv.ps1](<setup_venv.ps1>)로 환경을 준비하고 `Python (CodeBot StoryBot CUDA)` 커널을 선택한다. 스크립트는 Python 3.12를 기준으로 작성돼 있다.
 
 ```powershell
 .\setup_venv.ps1 -Python 'C:\path\to\python.exe'
+.\.venv\Scripts\python.exe verify_cuda.py
 ```
 
-`requirements.txt`는 원본 패키지 조건을 유지합니다.
-`requirements-notebook.txt`는 노트북 도구를 추가하며,
-`requirements-cuda.txt`는 이 GPU용 PyTorch 빌드를 지정합니다.
-`requirements-lock.txt`는 검증된 전체 설치 버전을 기록합니다.
-동일 버전으로 복원하려면 새 가상환경에서:
+Python 경로는 실제 설치 위치에 맞춘다. `requirements.txt`는 기본 패키지 조건, `requirements-cuda.txt`는 GPU 패키지, `requirements-notebook.txt`는 노트북 도구, `requirements-lock.txt`는 이전 환경의 버전 기록이다.
 
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
-.\.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name codebot-storybot --display-name 'Python (CodeBot StoryBot CUDA)'
-```
+노트북은 각 DAY 폴더에서 실행하도록 첫 셀에서 위치를 맞춘다. DAY2·3의 CodeBot 코드와 자료는 각각의 `CodeBot/`에 유지했다. DAY4는 DAY3 StoryBot 모듈을 공유하고 학습 결과는 DAY4에 따로 저장한다. `new_day.py`는 새 날짜의 빈 노트북을 만드는 보조 스크립트다.
 
-커널은 프로젝트 가상환경 내부에 등록되어 있습니다.
-가상환경은 생성할 때 사용한 기본 Python을 참조하므로 해당 Python 경로가
-삭제되거나 변경되면 Python 3.12를 지정해 가상환경을 다시 만드세요.
+## 데이터와 모델
 
-PyTorch 설치 안내: https://docs.pytorch.org/get-started/locally/
+CodeBot의 원본 텍스트·SFT JSON과 토크나이저 규칙은 포함돼 있다. TinyStories·OpenWebText의 큰 텍스트 파일은 별도 준비가 필요하다. 필요한 위치는 각 DAY 목차에서 확인한다. DAY4의 외부 모델 평가 셀은 API 키와 사용 비용이 필요하다.
+
+DAY2의 `model_pretrain.pt`, `model_sft.pt`, `tiny_codes.bin`은 이미 Git에 등록된 파일이라 ignore 설정만으로 제외되지 않는다. 현재 파일과 기록은 유지했다. 앞으로 생성하는 체크포인트와 바이너리는 ignore 대상이다.
+
+## 웹서비스
+
+[StoryBot 웹서비스](<DAY3_260929/storybot/web/README.md>)에서 실행 방법을 확인한다. 웹 코드가 포함돼 있어도 모델 가중치는 따로 준비해야 한다.
+
+## 문서 활용법
+
+- `.ipynb`: 실행용 노트북
+- 동명 `.md`: 개념, 실습 흐름, 저장된 결과와 다시 볼 내용을 정리한 학습노트
+- DAY별 `README.md`: 실습 순서와 필요한 파일 안내
+
+학습노트의 수치는 노트북에 저장된 이전 실행 기록을 기준으로 적었다. 정리 과정에서 장시간 학습이나 외부 API 평가는 다시 실행하지 않았다.

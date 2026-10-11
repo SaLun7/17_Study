@@ -44,3 +44,10 @@ Thumbs.db
 *.pem
 *.key
 *.p12
+
+# Experiment caches and logs
+.cache/
+wandb/
+runs/
+logs/
+17_비전트렌스포머/DAY*/logs/

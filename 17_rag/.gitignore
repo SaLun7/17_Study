@@ -18,3 +18,7 @@ work/chroma/
 DAY*/work/models/
 DAY*/work/chroma/
 DAY*/work/images/
+
+# Per-day generated checkpoints, databases and images
+work/
+DAY*/work/

@@ -1,5 +1,7 @@
 # StoryBot 웹서비스
 
+[← DAY3 목차](<../../README.md>)
+
 기존 `storybot/model_pretrain.pt`, `merge_rules.pkl`, `model.py`, `tokenizer.py`, `utils.py`를 사용하는 React + FastAPI 웹서비스입니다. 요구사항은 [스토리봇 PRD](../prd.md)에 있습니다.
 
 ## 실행
