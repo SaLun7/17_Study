@@ -1,20 +1,10 @@
 # 27. DBSCAN 군집화
 
-DBSCAN의 eps와 min_samples를 조정하며 밀도 기반 군집과 노이즈 탐지를 이해한다.
-
 [← DAY8 목차](<README.md>) · [원본 노트북](<27_DBSCAN 군집화.ipynb>)
 
-## 실습 내용
+DBSCAN의 eps와 min_samples를 조정하며 밀도 기반 군집과 노이즈 탐지를 이해한다.
 
-- 핵심점·경계점·노이즈의 차이를 이해한다.
-- eps와 min_samples가 결과에 미치는 영향을 확인한다.
-- K-Means·GMM과 비선형 군집 결과를 비교한다.
-- 노이즈 비율과 군집 수를 함께 평가한다.
-
-**데이터**  
-Iris와 make_circles 비선형 합성 데이터
-
-## 핵심 메모
+## 핵심 개념
 
 ### eps
 
@@ -28,82 +18,13 @@ Iris와 make_circles 비선형 합성 데이터
 
 어느 고밀도 영역에도 연결되지 않은 점을 뜻한다.
 
-## 코드
-
-코드는 길어서 중요한 셀만 접어 두었다. 전체 실행 과정은 원본 노트북에서 확인한다.
-
-<details>
-<summary>코드 셀 6 보기</summary>
-
-```python
-dbscan = DBSCAN(eps=0.6, min_samples=16, metric='euclidean')
-dbscan_labels = dbscan.fit_predict(iris.data)
-
-df['dbscan_cluster'] = dbscan_labels
-df['target'] = iris.target
-
-res = df.groupby(['target'])['dbscan_cluster'].value_counts()
-print(res)
-
-visualize_cluster_plot(dbscan, df, 'dbscan_cluster', iscenter=False)
-```
-
-</details>
-
-<details>
-<summary>코드 셀 8 보기</summary>
-
-```python
-from sklearn.cluster import KMeans
-
-kmeans = KMeans(n_clusters=2, max_iter=1000, random_state=42)
-kmeans_labels = kmeans.fit_predict(X)
-df['kmeans_cluster'] = kmeans_labels
-
-visualize_cluster_plot(kmeans, df, 'kmeans_cluster', iscenter=True)
-```
-
-</details>
-
-<details>
-<summary>코드 셀 9 보기</summary>
-
-```python
-from sklearn.mixture import GaussianMixture
-
-gmm = GaussianMixture(n_components=2, random_state=42)
-gmm_label = gmm.fit(X).predict(X)
-df['gmm_cluster'] = gmm_label
-
-visualize_cluster_plot(gmm, df, 'gmm_cluster', iscenter=False)
-```
-
-</details>
-
-<details>
-<summary>코드 셀 10 보기</summary>
-
-```python
-from sklearn.cluster import DBSCAN
-
-dbscan = DBSCAN(eps=0.2, min_samples=10, metric='euclidean')
-dbscan_labels = dbscan.fit_predict(X)
-df['dbscan_cluster'] = dbscan_labels
-
-visualize_cluster_plot(dbscan, df, 'dbscan_cluster', iscenter=False)
-```
-
-</details>
+DBSCAN은 밀도가 낮은 점을 노이즈로 남길 수 있어 모든 표본에 군집을 붙이는 K-Means와 다르다. `eps`가 너무 작으면 대부분 노이즈가 되고 너무 크면 군집이 합쳐진다. 피처의 단위를 맞춘 뒤 이웃 거리 분포를 보며 반경을 정한다.
 
 ## 실습 흐름
 
 Iris 데이터에서 `eps`와 `min_samples`를 바꾸며 군집 수와 노이즈 비율을 확인했다. 원형으로 겹쳐 있는 합성 데이터에서는 K-Means, GMM과 DBSCAN 결과를 나란히 그려 중심이나 타원으로 표현하기 어려운 모양을 비교했다. 어느 군집에도 충분히 연결되지 않은 점은 `-1` 노이즈로 분리했다.
 
-## 결과 메모
-
-동심원처럼 중심 기반 방법이 나누기 어려운 구조를 DBSCAN은 밀도 연결로 구분할 수 있다. 밀도가 크게 다른 군집에는 하나의 eps가 잘 맞지 않을 수 있다.
-
-## 사용한 함수
+### 사용한 함수
 
 | 함수·클래스 | 역할 |
 |---|---|
@@ -113,14 +34,18 @@ Iris 데이터에서 `eps`와 `min_samples`를 바꾸며 군집 수와 노이즈
 | `GaussianMixture` | 가우시안 혼합 확률 군집화 |
 | `DBSCAN` | 밀도 연결 기반 군집화와 노이즈 탐지 |
 
+## 실행 결과
+
+동심원처럼 중심 기반 방법이 나누기 어려운 구조를 DBSCAN은 밀도 연결로 구분할 수 있다. 밀도가 크게 다른 군집에는 하나의 eps가 잘 맞지 않을 수 있다.
+
+## 필요한 파일
+
+Iris와 make_circles 비선형 합성 데이터
+
+데이터를 불러오는 셀부터 실행한다. 별도의 로컬 입력 파일을 지정하지 않는다.
+
 ## 다시 볼 것
 
 - 거리 기반 이웃을 사용하므로 실행 전에 피처 스케일을 맞춘다.
 - `eps`는 k-distance 그래프와 데이터 간격을 참고해 조정한다.
 - 밀도가 크게 다른 군집이 함께 있으면 하나의 설정으로 나누기 어렵다.
-
-## 정리
-
-- 거리 기반이므로 먼저 스케일링한다.
-- eps를 키우면 군집 병합과 노이즈 감소 가능성이 커진다.
-- 노이즈가 적다는 이유만으로 좋은 결과라고 판단하지 않는다.

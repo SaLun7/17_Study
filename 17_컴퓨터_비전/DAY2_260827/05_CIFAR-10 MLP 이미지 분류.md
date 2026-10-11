@@ -1,20 +1,10 @@
 # 05. CIFAR-10 MLP 이미지 분류
 
-CIFAR-10 컬러 이미지를 정규화하고 학습·검증·테스트로 나눈 뒤 MLP 기준선 모델을 학습한다.
-
 [← DAY2 목차](<README.md>) · [원본 노트북](<05_CIFAR-10 MLP 이미지 분류.ipynb>)
 
-## 실습 내용
+CIFAR-10 컬러 이미지를 정규화하고 학습·검증·테스트로 나눈 뒤 MLP 기준선 모델을 학습한다.
 
-- 데이터 shape과 라벨 구조를 확인한다.
-- 픽셀값을 0~1로 정규화한다.
-- 학습 45,000개와 검증 5,000개를 분리한다.
-- Flatten 기반 MLP를 학습·평가한다.
-
-**데이터**  
-CIFAR-10: 32×32 RGB 이미지, 10개 클래스
-
-## 핵심 메모
+## 핵심 개념
 
 ### Flatten
 
@@ -32,75 +22,31 @@ CIFAR-10: 32×32 RGB 이미지, 10개 클래스
 
 MLP는 공간 이웃 구조를 버리므로 이미지에서는 CNN보다 비효율적일 수 있다.
 
-## 코드
-
-코드는 길어서 중요한 셀만 접어 두었다. 전체 실행 과정은 원본 노트북에서 확인한다.
-
-<details>
-<summary>코드 셀 1 보기</summary>
-
-```python
-import matplotlib.pyplot as plt
-from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
-```
-
-</details>
-
-<details>
-<summary>코드 셀 2 보기</summary>
-
-```python
-(train_images, train_labels), (test_images, test_labels) = cifar10.load_data();
-```
-
-</details>
-
-<details>
-<summary>코드 셀 5 보기</summary>
-
-```python
-plt.figure(figsize = (1, 1))
-plt.imshow(train_images[32])
-```
-
-</details>
-
-<details>
-<summary>코드 셀 12 보기</summary>
-
-```python
-mlp_model.fit(train_images, train_labels, epochs = 5, 
-              validation_data = (val_images, val_labels))
-```
-
-</details>
+MLP는 입력 픽셀 수에 따라 첫 Dense 층의 파라미터가 급격히 늘어난다. 사진을 한 줄로 펼친 뒤에는 같은 무늬가 이미지의 다른 위치에 나타나도 따로 학습해야 한다. 그래서 이 실습의 점수는 다음 CNN의 지역 특징 추출 방식과 비교할 기준이 된다.
 
 ## 실습 흐름
 
 CIFAR-10의 이미지와 라벨 shape을 확인하고 픽셀값을 0~1로 바꿨다. 훈련 데이터 일부를 검증용으로 분리한 뒤 32×32×3 이미지를 Flatten으로 펼쳐 Dense 층에 입력했다. epoch별 훈련·검증 정확도를 비교하고 마지막에는 별도 테스트 데이터로 MLP 기준 성능을 평가했다.
 
-## 결과 메모
-
-MLP는 데이터 파이프라인을 검증하는 좋은 기준선이다. 최종 셀이 미실행 상태라면 정확도를 문서에 확정값으로 기록하지 않고 재실행 후 추가한다.
-
-## 사용한 함수
+### 사용한 함수
 
 | 함수·클래스 | 역할 |
 |---|---|
 | `Sequential` | 순차적으로 층을 쌓는 Keras 모델 |
 | `Dense` | 완전연결 신경망 층 |
 
+## 실행 결과
+
+MLP는 데이터 파이프라인을 검증하는 좋은 기준선이다. 최종 셀이 미실행 상태라면 정확도를 문서에 확정값으로 기록하지 않고 재실행 후 추가한다.
+
+## 필요한 파일
+
+CIFAR-10: 32×32 RGB 이미지, 10개 클래스
+
+CIFAR-10은 Keras에서 내려받는다. 별도 이미지 파일을 준비할 필요는 없다.
+
 ## 다시 볼 것
 
 - 정수 라벨에는 sparse categorical loss를 사용하는 이유를 확인한다.
 - Flatten 이후 입력 차원이 3,072가 되는 과정을 계산해 본다.
 - 다음 CNN 결과와 비교할 때 데이터 분할과 정규화 조건을 같게 유지한다.
-
-## 정리
-
-- 검증 데이터로 모델을 선택하고 테스트는 최종 평가에만 사용한다.
-- 정규화 전후 dtype과 범위를 확인한다.
-- 다음 단계에서는 CNN과 같은 조건으로 비교한다.

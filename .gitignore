@@ -3,12 +3,12 @@
 17_머신러닝/DAY4_260814/data/
 17_aws_docker/backend/frontend_source/data/**/*.csv
 datasets/
-17_비전트렌스포머/datasets/
-17_비전트렌스포머/DAY*/datasets/
-17_CodeBot_StotyBot/DAY4_260930/owt_*.txt
+17_비전트랜스포머/datasets/
+17_비전트랜스포머/DAY*/datasets/
+17_CodeBot_StoryBot/DAY4_260930/owt_*.txt
 
 # Generated model checkpoints
-17_비전트렌스포머/models/
+17_비전트랜스포머/models/
 *.pt
 *.pth
 *.ckpt
@@ -50,4 +50,4 @@ Thumbs.db
 wandb/
 runs/
 logs/
-17_비전트렌스포머/DAY*/logs/
+17_비전트랜스포머/DAY*/logs/

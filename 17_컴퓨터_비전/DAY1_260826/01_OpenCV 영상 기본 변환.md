@@ -1,20 +1,10 @@
 # 01. OpenCV 영상 기본 변환
 
-OpenCV로 영상을 읽고 크기변환, 반전, 회전, 자르기와 픽셀 수정을 수행한다.
-
 [← DAY1 목차](<README.md>) · [원본 노트북](<01_OpenCV 영상 기본 변환.ipynb>)
 
-## 실습 내용
+OpenCV로 영상을 읽고 크기변환, 반전, 회전, 자르기와 픽셀 수정을 수행한다.
 
-- 영상 배열의 shape과 dtype을 확인한다.
-- resize·flip·rotation의 좌표 변화를 이해한다.
-- NumPy 슬라이싱으로 관심영역을 자른다.
-- 슬라이스 수정이 원본에 미치는 영향을 확인한다.
-
-**데이터**  
-like_lenna.png 그레이스케일 영상
-
-## 핵심 메모
+## 핵심 개념
 
 ### 영상 배열
 
@@ -28,80 +18,13 @@ like_lenna.png 그레이스케일 영상
 
 슬라이스는 원본을 참조할 수 있어 값을 바꾸면 원본도 변할 수 있다.
 
-## 코드
-
-코드는 길어서 중요한 셀만 접어 두었다. 전체 실행 과정은 원본 노트북에서 확인한다.
-
-<details>
-<summary>코드 셀 1 보기</summary>
-
-```python
-import cv2 
-image = cv2.imread("like_lenna.png", cv2.IMREAD_GRAYSCALE)
-
-if image is not None:
-    print("read!")
-
-else:
-    print("not!")
-
-print(type(image))
-```
-
-</details>
-
-<details>
-<summary>코드 셀 11 보기</summary>
-
-```python
-height, width = image.shape
-matrix = cv2.getRotationMatrix2D((width / 2, height / 2), 30, 1)
-res = cv2.warpAffine(image, matrix, (width, height), borderValue=255)
-
-plt.imshow(res, cmap= "gray")
-plt.title("30 Rotation Like Lenna")
-plt.axis("off")
-plt.show()
-```
-
-</details>
-
-<details>
-<summary>코드 셀 12 보기</summary>
-
-```python
-plt.imshow(image[50:150, 50:100], cmap= "gray")
-plt.title("Like Lenna")
-plt.axis("off")
-plt.show()
-```
-
-</details>
-
-<details>
-<summary>코드 셀 13 보기</summary>
-
-```python
-croped_image = image[50:150, 50:150]
-croped_image[:] = 200
-
-plt.imshow(image, cmap= "gray")
-plt.title("Like Lenna")
-plt.axis("off")
-plt.show()
-```
-
-</details>
+영상 배열은 수학적 좌표 `(x, y)`와 인덱스 `[행, 열]`의 순서가 달라 혼동하기 쉽다. 회전·크기 변경 뒤에는 원본에 있던 한 픽셀이 새 영상의 어디로 이동하는지 생각하며 결과를 본다. 관심영역을 잘라 수정할 때 원본까지 바뀌는지 확인하려면 view와 copy의 차이를 직접 비교한다.
 
 ## 실습 흐름
 
 `like_lenna.png`를 그레이스케일로 읽고 배열의 자료형과 높이·너비를 확인했다. 같은 영상을 여러 크기로 바꾸고 좌우·상하 반전과 30도 회전을 적용했다. 마지막에는 NumPy 슬라이싱으로 관심영역을 잘라 값을 바꾸면서 view가 원본 영상과 메모리를 공유하는 현상을 확인했다.
 
-## 결과 메모
-
-각 결과를 단순 그림이 아니라 shape, 좌표, 경계 채움 방식의 변화로 해석한다. 영상이 None이면 경로와 작업 디렉터리를 먼저 점검한다.
-
-## 사용한 함수
+### 사용한 함수
 
 | 함수·클래스 | 역할 |
 |---|---|
@@ -111,14 +34,18 @@ plt.show()
 | `cv2.getRotationMatrix2D` | 2차원 회전 변환행렬 생성 |
 | `cv2.warpAffine` | Affine 변환 적용 |
 
+## 실행 결과
+
+각 결과를 단순 그림이 아니라 shape, 좌표, 경계 채움 방식의 변화로 해석한다. 영상이 None이면 경로와 작업 디렉터리를 먼저 점검한다.
+
+## 필요한 파일
+
+like_lenna.png 그레이스케일 영상
+
+같은 DAY에 포함된 `like_lenna.png`를 사용한다.
+
 ## 다시 볼 것
 
 - 영상이 `None`이면 변환 함수보다 먼저 현재 작업 폴더와 파일명을 확인한다.
 - OpenCV 좌표의 `(x, y)`와 NumPy 인덱스의 `[행, 열]` 순서를 구분한다.
 - 잘라낸 영상을 독립적으로 수정하려면 슬라이스 뒤에 `copy()`를 사용한다.
-
-## 정리
-
-- OpenCV 좌표와 NumPy [행, 열] 순서를 구분한다.
-- 회전 후 잘림과 borderValue를 확인한다.
-- 원본 보존이 필요하면 crop.copy()를 사용한다.

@@ -12,8 +12,8 @@
 | [17_딥러닝](<17_딥러닝/README.md>) | PyTorch, 이미지·시계열·문장 모델과 강화학습 |
 | [17_컴퓨터_비전](<17_컴퓨터_비전/README.md>) | OpenCV, TensorFlow와 이미지 모델 실습 |
 | [17_자연어처리_컴퓨터비전](<17_자연어처리_컴퓨터비전/README.md>) | 토큰화·임베딩, 문장 분류·번역·요약 |
-| [17_비전트렌스포머](<17_비전트렌스포머/README.md>) | ViT·Swin·CvT 의류 이미지 분류 |
-| [17_CodeBot_StotyBot](<17_CodeBot_StotyBot/README.md>) | BPE, 언어 모델 사전학습·SFT·GRPO·DPO |
+| [17_비전트랜스포머](<17_비전트랜스포머/README.md>) | ViT·Swin·CvT 의류 이미지 분류 |
+| [17_CodeBot_StoryBot](<17_CodeBot_StoryBot/README.md>) | BPE, 언어 모델 사전학습·SFT·GRPO·DPO |
 | [17_rag](<17_rag/README.md>) | 임베딩·문서 검색, 생성형 AI와 LoRA |
 
 ## 웹·배포 실습
@@ -24,7 +24,7 @@
 | [17_todos](<17_todos/README.md>) | 템플릿부터 MVC까지 단계별 Todo 앱 |
 | [17_job_scraper](<17_job_scraper/README.md>) | Flask 기반 채용 정보 검색과 CSV 저장 |
 | [17_aws_docker](<17_aws_docker/README.md>) | Docker Compose, FastAPI와 Nginx 배포 구성 |
-| [17_apt_api](<17_apt_api/>) | API 실습 프로젝트 |
+| [17_apt_api](<17_apt_api/README.md>) | 아파트 매매 실거래가 조회 실습 |
 
 ## 자료 보는 순서
 

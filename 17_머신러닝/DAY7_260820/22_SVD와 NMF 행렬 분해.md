@@ -1,20 +1,10 @@
 # 22. SVD와 NMF 행렬 분해
 
-SVD로 행렬을 분해·복원하고 Truncated SVD와 NMF의 저차원 표현을 비교한다.
-
 [← DAY7 목차](<README.md>) · [원본 노트북](<22_SVD와 NMF 행렬 분해.ipynb>)
 
-## 실습 내용
+SVD로 행렬을 분해·복원하고 Truncated SVD와 NMF의 저차원 표현을 비교한다.
 
-- U·Sigma·Vt의 역할과 행렬 복원을 이해한다.
-- 작은 특이값을 버린 저랭크 근사를 확인한다.
-- Truncated SVD와 PCA의 관계를 비교한다.
-- NMF의 비음수 제약을 이해한다.
-
-**데이터**  
-합성 행렬과 Iris 수치 데이터
-
-## 핵심 메모
+## 핵심 개념
 
 ### 특이값
 
@@ -28,108 +18,13 @@ SVD로 행렬을 분해·복원하고 Truncated SVD와 NMF의 저차원 표현�
 
 음수가 없는 입력을 양수 성분의 조합으로 표현해 부분 기반 해석에 유리하다.
 
-## 코드
-
-코드는 길어서 중요한 셀만 접어 두었다. 전체 실행 과정은 원본 노트북에서 확인한다.
-
-<details>
-<summary>코드 셀 10 보기</summary>
-
-```python
-from sklearn.decomposition import TruncatedSVD, PCA
-from sklearn.datasets import load_iris
-import matplotlib.pyplot as plt
-import warnings
-warnings.filterwarnings('ignore')
-%matplotlib inline
-
-iris = load_iris()
-iris_ftrs = iris.data
-# 2개의 주요 component로 TruncatedSVD 변환
-tsvd = TruncatedSVD(n_components=2)
-tsvd.fit(iris_ftrs)
-iris_tsvd = tsvd.transform(iris_ftrs)
-
-# Scatter plot 2차원으로 TruncatedSVD 변환 된 데이터 표현. 품종은 색깔로 구분
-plt.scatter(x=iris_tsvd[:,0], y= iris_tsvd[:,1], c= iris.target)
-plt.xlabel('TruncatedSVD Component 1')
-plt.ylabel('TruncatedSVD Component 2')
-```
-
-</details>
-
-<details>
-<summary>코드 셀 11 보기</summary>
-
-```python
-from sklearn.preprocessing import StandardScaler
-
-# 붓꽃 데이터를 StandardScaler로 변환
-scaler = StandardScaler()
-iris_scaled = scaler.fit_transform(iris_ftrs)
-
-# 스케일링된 데이터를 기반으로 TruncatedSVD 변환 수행 
-tsvd = TruncatedSVD(n_components=2)
-tsvd.fit(iris_scaled)
-iris_tsvd = tsvd.transform(iris_scaled)
-
-# 스케일링된 데이터를 기반으로 PCA 변환 수행 
-pca = PCA(n_components=2)
-pca.fit(iris_scaled)
-iris_pca = pca.transform(iris_scaled)
-
-# TruncatedSVD 변환 데이터를 왼쪽에, PCA변환 데이터를 오른쪽에 표현 
-fig, (ax1, ax2) = plt.subplots(figsize=(9,4), ncols=2)
-ax1.scatter(x=iris_tsvd[:,0], y= iris_tsvd[:,1], c= iris.target)
-ax2.scatter(x=iris_pca[:,0], y= iris_pca[:,1], c= iris.target)
-ax1.set_title('Truncated SVD Transformed')
-ax2.set_title('PCA Transformed')
-```
-
-</details>
-
-<details>
-<summary>코드 셀 12 보기</summary>
-
-```python
-print((iris_pca - iris_tsvd).mean())
-print((pca.components_ - tsvd.components_).mean())
-```
-
-</details>
-
-<details>
-<summary>코드 셀 15 보기</summary>
-
-```python
-from sklearn.decomposition import NMF
-from sklearn.datasets import load_iris
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-iris = load_iris()
-iris_ftrs = iris.data
-nmf = NMF(n_components=2)
-nmf.fit(iris_ftrs)
-iris_nmf = nmf.transform(iris_ftrs)
-plt.scatter(x=iris_nmf[:,0], y= iris_nmf[:,1], c= iris.target)
-plt.xlabel('NMF Component 1')
-plt.ylabel('NMF Component 2')
-
-plt.show()
-```
-
-</details>
+SVD의 축에는 양수와 음수 값이 함께 나타날 수 있지만 NMF는 비음수 성분을 더해 원본을 근사한다. 그래서 NMF 성분을 '부분의 조합'으로 읽기 쉽지만 성분 수를 바꾸면 해석도 달라진다. 두 결과의 그림만 비교하지 말고 복원 오차와 입력 제약을 같이 본다.
 
 ## 실습 흐름
 
 작은 행렬을 U, 특이값과 Vt로 분해한 뒤 다시 곱해 원 행렬이 복원되는지 확인했다. 큰 특이값 일부만 남겨 저랭크 근사의 오차와 압축 효과를 살펴봤다. 이어서 Iris 데이터에 Truncated SVD와 NMF를 적용해 음수 허용 여부와 결과 표현의 차이를 비교했다.
 
-## 결과 메모
-
-복원 오차와 축소 차원을 함께 기록해야 압축 효과를 평가할 수 있다. NMF는 입력에 음수가 있으면 직접 적용할 수 없다.
-
-## 사용한 함수
+### 사용한 함수
 
 | 함수·클래스 | 역할 |
 |---|---|
@@ -139,14 +34,18 @@ plt.show()
 | `TruncatedSVD` | 저랭크 행렬 분해 기반 차원축소 |
 | `NMF` | 비음수 행렬 분해 |
 
+## 실행 결과
+
+복원 오차와 축소 차원을 함께 기록해야 압축 효과를 평가할 수 있다. NMF는 입력에 음수가 있으면 직접 적용할 수 없다.
+
+## 필요한 파일
+
+합성 행렬과 Iris 수치 데이터
+
+데이터를 불러오는 셀부터 실행한다. 별도의 로컬 입력 파일을 지정하지 않는다.
+
 ## 다시 볼 것
 
 - 남길 성분 수에 따라 복원 오차와 압축률이 함께 달라진다.
 - NMF 입력에는 음수가 없어야 한다.
 - 분해된 성분의 수학적 크기와 업무상 의미를 구분해 해석한다.
-
-## 정리
-
-- Sigma를 대각행렬로 구성해 차원을 맞춘다.
-- 축소 차원과 복원 손실의 균형을 본다.
-- 알고리즘의 입력 제약을 먼저 확인한다.

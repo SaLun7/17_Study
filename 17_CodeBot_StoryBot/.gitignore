@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.env
+wandb/
+
+# Generated training data and model checkpoints
+*.pt
+*.bin
+tiny_stories_*.txt
+
+# WebBot corpora and generated tokenizer
+owt_*.txt
+/DAY4_260930/webbot/merge_rules.pkl
+
+# Preserve the three DAY2 files already tracked before the folder rename
+!/DAY2_260928/CodeBot/model_pretrain.pt
+!/DAY2_260928/CodeBot/model_sft.pt
+!/DAY2_260928/CodeBot/tiny_codes.bin

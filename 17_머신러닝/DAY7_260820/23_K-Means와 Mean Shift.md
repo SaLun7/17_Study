@@ -1,20 +1,10 @@
 # 23. K-Means와 Mean Shift
 
-중심 기반 K-Means와 밀도 봉우리를 찾는 Mean Shift를 Iris와 합성 데이터에서 비교한다.
-
 [← DAY7 목차](<README.md>) · [원본 노트북](<23_K-Means와 Mean Shift.ipynb>)
 
-## 실습 내용
+중심 기반 K-Means와 밀도 봉우리를 찾는 Mean Shift를 Iris와 합성 데이터에서 비교한다.
 
-- K-Means의 중심 갱신 과정을 이해한다.
-- PCA 2축에서 군집 결과를 시각화한다.
-- Mean Shift의 bandwidth 역할을 확인한다.
-- 정답 클래스와 군집 라벨의 차이를 이해한다.
-
-**데이터**  
-Iris 및 make_blobs 합성 군집 데이터
-
-## 핵심 메모
+## 핵심 개념
 
 ### K-Means
 
@@ -28,92 +18,22 @@ Iris 및 make_blobs 합성 군집 데이터
 
 숫자는 임의의 식별자이며 실제 클래스 번호와 직접 일치하지 않는다.
 
-## 코드
-
-코드는 길어서 중요한 셀만 접어 두었다. 전체 실행 과정은 원본 노트북에서 확인한다.
-
-<details>
-<summary>코드 셀 11 보기</summary>
-
-```python
-kmeans = KMeans(n_clusters=3, init='k-means++', max_iter=200, random_state=42)
-cluster_labels = kmeans.fit_predict(X)
-df_cls['kmeans_label']  = cluster_labels
-
-centers = kmeans.cluster_centers_
-unique_labels = np.unique(cluster_labels)
-
-markers=['o', 's', '^', 'P','D','H','x']
-
-
-for label in unique_labels:
-    label_cluster = df_cls[df_cls['kmeans_label']==label]
-    center = centers[label]
-    plt.scatter(x=label_cluster['ftr1'], y=label_cluster['ftr2'], edgecolor='k', 
-                marker=markers[label] )
-    plt.scatter(x=center[0], y=center[1], s=200, color='white',
-                alpha=0.9, edgecolor='k', marker=markers[label])
-    plt.scatter(x=center[0], y=center[1], s=70, color='k', edgecolor='k', 
-                marker='$%d$' % label)
-
-plt.show()
-```
-
-</details>
-
-<details>
-<summary>코드 셀 13 보기</summary>
-
-```python
-import numpy as np
-from sklearn.datasets import make_blobs
-from sklearn.cluster import MeanShift
-
-X, y = make_blobs(n_samples=200, n_features=2, centers=3, 
-                  cluster_std=0.7, random_state=42)
-
-meanshift= MeanShift(bandwidth=0.8)
-cluster_labels = meanshift.fit_predict(X)
-print(np.unique(cluster_labels))
-```
-
-</details>
-
-<details>
-<summary>코드 셀 14 보기</summary>
-
-```python
-meanshift= MeanShift(bandwidth=1.0)
-cluster_labels = meanshift.fit_predict(X)
-print(np.unique(cluster_labels))
-```
-
-</details>
-
-<details>
-<summary>코드 셀 16 보기</summary>
-
-```python
-import pandas as pd
-
-
-df = pd.DataFrame(data=X, columns=['ftr1', 'ftr2'])
-df['target'] = y
-
-best_bandwidth = estimate_bandwidth(X)
-
-meanshift= MeanShift(bandwidth=best_bandwidth)
-cluster_labels = meanshift.fit_predict(X)
-print(np.unique(cluster_labels))
-```
-
-</details>
+K-Means는 군집 수를 먼저 정해야 하고 중심에서 멀리 떨어진 점에도 어느 군집인지 배정한다. Mean Shift는 밀도가 높은 지점을 찾지만 대역폭 설정에 따라 군집 수가 크게 달라진다. 두 방법의 숫자 라벨은 이름표일 뿐이며 실제 품종 번호와 바로 비교하지 않는다.
 
 ## 실습 흐름
 
 Iris 데이터에 K-Means를 적용해 중심과 군집 라벨을 확인하고 PCA 두 축으로 결과를 표시했다. 합성 데이터에서는 K-Means의 군집 수를 직접 지정한 결과와 Mean Shift가 bandwidth를 기준으로 밀도 봉우리를 찾은 결과를 비교했다. 정답 클래스와 군집 번호가 같은 의미가 아니라는 점도 교차표로 확인했다.
 
-## 결과 메모
+### 사용한 함수
+
+| 함수·클래스 | 역할 |
+|---|---|
+| `load_iris` | Iris 데이터셋 불러오기 |
+| `PCA` | 분산을 보존하는 비지도 차원축소 |
+| `KMeans` | 중심 거리 기반 군집화 |
+| `MeanShift` | 밀도 봉우리 기반 군집화 |
+
+## 실행 결과
 
 구형이고 크기가 비슷한 군집에서는 K-Means가 효과적이다. Mean Shift는 군집 수를 직접 지정하지 않지만 bandwidth에 민감하다.
 
@@ -123,23 +43,14 @@ Iris 데이터에 K-Means를 적용해 중심과 군집 라벨을 확인하고 P
 ftr1      ftr2  target
 ```
 
-## 사용한 함수
+## 필요한 파일
 
-| 함수·클래스 | 역할 |
-|---|---|
-| `load_iris` | Iris 데이터셋 불러오기 |
-| `PCA` | 분산을 보존하는 비지도 차원축소 |
-| `KMeans` | 중심 거리 기반 군집화 |
-| `MeanShift` | 밀도 봉우리 기반 군집화 |
+Iris 및 make_blobs 합성 군집 데이터
+
+데이터를 불러오는 셀부터 실행한다. 별도의 로컬 입력 파일을 지정하지 않는다.
 
 ## 다시 볼 것
 
 - K-Means는 거리 기반이므로 피처 스케일을 먼저 맞춘다.
 - 초기 중심에 따른 차이를 줄이려면 여러 초기화를 사용한다.
 - Mean Shift의 bandwidth가 작으면 군집 수가 지나치게 많아질 수 있다.
-
-## 정리
-
-- 거리 기반 군집 전 스케일링한다.
-- 군집 번호를 서열로 해석하지 않는다.
-- 데이터 형태와 알고리즘 가정이 맞는지 시각화한다.

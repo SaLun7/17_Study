@@ -10,6 +10,8 @@ Word2Vec은 단어를 하나의 어휘 항목으로 다루지만 FastText는 단
 
 RNN·LSTM은 단어 벡터의 순서를 따라 문장 표현을 만든다. 양방향 설정과 LSTM projection 설정에 따라 출력, hidden state, cell state의 마지막 차원이 달라진다.
 
+Word2Vec의 유사 단어 검색은 단어 하나의 표현을 평가하는 예제이고, 문장 분류는 여러 단어와 순서를 결합하는 별도의 문제다. LSTM에 벡터를 넣기 전에는 배치·문장 길이·임베딩 차원을 구분해야 한다. 양방향 LSTM은 앞뒤에서 읽은 정보를 합치므로 뒤의 분류층 입력 크기도 이에 맞춰 달라진다.
+
 ## 실습 흐름
 
 NSMC로 Skip-gram과 Word2Vec을 학습해 유사 단어를 비교하고 Word2Vec 모델을 저장한다. KorNLI 문장으로 FastText의 미등록 단어 처리를 확인한 뒤, RNN·LSTM shape과 문장 분류기의 전처리·학습 함수를 구성한다.
